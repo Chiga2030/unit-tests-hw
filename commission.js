@@ -27,4 +27,4 @@ const commission = (flyDate) => {
     return 0;
 };
 
-export default commission;
+module.exports = commission;
