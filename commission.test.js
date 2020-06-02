@@ -1,6 +1,6 @@
 const commission = require('./commission');
 const MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
-const SECOND = 1000;
+const SECOND = 1000;	// модификатор граничных значений (1 секунда)
 
 // граничные значения:
 const value1 = Date.now() + (10 * MILLISECONDS_IN_DAY); //10 дней
@@ -10,70 +10,91 @@ const value4 = Date.now();	//0
 
 // сценарии для тестов:
 testData = {
-	'test1': {
-		'text': 'Граница = 10 дней',
-		'arg': value1,
-		'res': 20,
+
+	'group1': {
+		'description': 'Группа тестов для проверки границы значения в 10 дней',
+		'test1': {
+			'description': 'Граничное значение',
+			'arg': value1,
+			'res': 20,
+		},
+		'test2': {
+			'description': 'Значение рядом > граничного значения',
+			'arg': value1 + SECOND,
+			'res': 0,
+		},
+		'test3': {
+			'description': 'Значение рядом < граничного значения',
+			'arg': value1 - SECOND,
+			'res': 20,
+		},
 	},
-	'test2': {
-		'text': 'Значение рядом с границей > 10 дней',
-		'arg': value1 + SECOND,
-		'res': 0,
+
+	'group2': {
+		'description': 'Группа тестов для проверки границы значения в 5 дней',
+		'test1': {
+			'description': 'Граничное значение',
+			'arg': value2,
+			'res': 50,
+		},
+		'test2': {
+			'description': 'Значение рядом > граничного значения',
+			'arg': value2 + SECOND,
+			'res': 20,
+		},
+		'test3': {
+			'description': 'Значение рядом < граничного значения',
+			'arg': value2 - SECOND,
+			'res': 50,
+		},
 	},
-	'test3': {
-		'text': 'Значение рядом с границей < 10 дней',
-		'arg': value1 - SECOND,
-		'res': 20,
+
+	'group3': {
+		'description': 'Группа тестов для проверки границы значения в 24 часа',
+		'test1': {
+			'description': 'Граничное значение',
+			'arg': value3,
+			'res': 75,
+		},
+		'test2': {
+			'description': 'Значение рядом > граничного значения',
+			'arg': value3 + SECOND,
+			'res': 50,
+		},
+		'test3': {
+			'description': 'Значение рядом < граничного значения',
+			'arg': value3 - SECOND,
+			'res': 75,
+		},
 	},
-	'test4': {
-		'text': 'Граница = 5 дней',
-		'arg': value2,
-		'res': 50,
+
+	'group4': {
+		'description': 'Группа тестов для проверки границы значения в 0 секунд',
+		'test1': {
+			'description': 'Граничное значение',
+			'arg': value4,
+			'res': 100,
+		},
+		'test2': {
+			'description': 'Значение рядом > граничного значения',
+			'arg': value4 + SECOND,
+			'res': 75,
+		},
+		'test3': {
+			'description': 'Значение рядом < граничного значения',
+			'arg': value4 - SECOND,
+			'res': 100,
+		},
 	},
-	'test5': {
-		'text': 'Значение рядом с границей > 5 дней',
-		'arg': value2 + SECOND,
-		'res': 20,
-	},
-	'test6': {
-		'text': 'Значение рядом с границей < 5 дней',
-		'arg': value2 - SECOND,
-		'res': 50,
-	},
-	'test7': {
-		'text': 'Граница = 24 часа',
-		'arg': value3,
-		'res': 75,
-	},
-	'test8': {
-		'text': 'Значение рядом с границей > 24 часа',
-		'arg': value3 + SECOND,
-		'res': 50,
-	},
-	'test9': {
-		'text': 'Значение рядом с границей < 24 часа',
-		'arg': value3 - SECOND,
-		'res': 75,
-	},
-	'test10': {
-		'text': 'Граница = 0',
-		'arg': value4,
-		'res': 100,
-	},
-	'test11': {
-		'text': 'Значение рядом с границей > 0',
-		'arg': value4 + SECOND,
-		'res': 75,
-	},
-	'test12': {
-		'text': 'Значение рядом с границей < 0',
-		'arg': value4 - SECOND,
-		'res': 100,
-	},
+
 }
 
-for(let i = 1; i <= Object.keys(testData).length; i++){
-	test(testData['test'+i].text, () => {
-		  expect(commission(testData['test'+i].arg)).toBe(testData['test'+i].res);
+for(let j = 1; j <= Object.keys(testData).length; j++){
+	describe(testData['group'+j].description, () => {
+		for(let i = 1; i <= Object.keys(testData['group'+j]).length-1; i++){	// .length-1 из за того, что в объектах "group*" есть свойство "description"
+			test(testData['group'+j]['test'+i].description, () => {
+				  expect(commission(testData['group'+j]['test'+i].arg)).toBe(testData['group'+j]['test'+i].res);
+			});
+		}
 	});
 }
