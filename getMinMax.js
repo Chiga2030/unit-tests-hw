@@ -26,4 +26,6 @@ function getMinMax(input) {
     return { min: Math.min(...numbers), max: Math.max(...numbers) };
 }
 
-module.exports = getMinMax;
+console.log(getMinMax('jjewfw pwefewpod fewfl wfkewj'));
+
+//module.exports = getMinMax;
