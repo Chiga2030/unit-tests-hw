@@ -56,4 +56,4 @@ function meanMode(numbers) {
 
 }
 
-module.exports = { meanMode };
+module.exports = meanMode;
