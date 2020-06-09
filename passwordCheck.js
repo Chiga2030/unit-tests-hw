@@ -28,4 +28,4 @@ function passwordCheck(password) {
     return password.length >= 10 && numRegExp && letUpRegExp && letLowRegExp && symbRegExp;
 }
 
-module.exports = { passwordCheck };
+module.exports = passwordCheck;
