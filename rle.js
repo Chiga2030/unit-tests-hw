@@ -17,4 +17,4 @@ function rle(input) {
     return input.match(/(.)\1*/g).map(item => (item.length !== 1 ? item[0] + item.length : item)).join('');
 }
 
-module.exports = { rle };
+module.exports = rle;
