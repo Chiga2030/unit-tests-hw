@@ -32,4 +32,4 @@ function sum(x) {
 
 }
 
-module.exports = { sum };
+module.exports = sum;
