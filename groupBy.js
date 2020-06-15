@@ -28,4 +28,15 @@ const groupBy = (fn, obj) => {
     return result;
 };
 
-module.exports = { groupBy };
+module.exports = groupBy;
+
+// const exampObject1 = {val1: 1, val2: 2, val3: 3};
+// const innerObject1 = exampObject1;
+// const innerObject2 = exampObject1;
+// const exampObject2 = {val4: 4, val5: 5, val6: 6};
+// const innerObject3 = exampObject2;
+
+//const obj = { innerObject1, innerObject2, innerObject3 };
+//console.log(groupBy(x => x, obj));
+
+
