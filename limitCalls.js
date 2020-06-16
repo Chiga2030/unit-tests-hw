@@ -33,4 +33,4 @@ function limitCalls(fn, maxCalls) {
     };
 }
 
-module.exports = { limitCalls };
+module.exports = limitCalls;
