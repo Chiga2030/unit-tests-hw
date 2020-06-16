@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1592167536632" clover="3.2.0">
-  <project timestamp="1592167536632" name="All files">
-    <metrics statements="14" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3" elements="23" coveredelements="23" complexity="0" loc="14" ncloc="14" packages="1" files="1" classes="1"/>
-    <file name="getIntersection.js" path="/home/chiga2030/webDev/unit-tests-hw/getIntersection.js">
-      <metrics statements="14" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
-      <line num="16" count="15" type="stmt"/>
-      <line num="17" count="15" type="stmt"/>
-      <line num="19" count="15" type="stmt"/>
-      <line num="20" count="81" type="stmt"/>
-      <line num="22" count="81" type="cond" truecount="2" falsecount="0"/>
-      <line num="23" count="49" type="stmt"/>
-      <line num="24" count="49" type="stmt"/>
-      <line num="29" count="60" type="cond" truecount="2" falsecount="0"/>
-      <line num="30" count="28" type="stmt"/>
-      <line num="32" count="32" type="cond" truecount="2" falsecount="0"/>
-      <line num="33" count="31" type="stmt"/>
-      <line num="36" count="1" type="stmt"/>
-      <line num="39" count="15" type="stmt"/>
-      <line num="42" count="1" type="stmt"/>
+<coverage generated="1592254029759" clover="3.2.0">
+  <project timestamp="1592254029759" name="All files">
+    <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1" elements="14" coveredelements="14" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
+    <file name="groupBy.js" path="/home/chiga2030/webDev/unit-tests-hw/groupBy.js">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="18" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="21" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="25" count="2" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="31" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
