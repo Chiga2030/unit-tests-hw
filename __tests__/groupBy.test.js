@@ -1,26 +1,68 @@
 const groupBy = require('../groupBy');
 
 /**
-* { '{}': [{}, {}] }
+* Объект получаемый функцией может содержать разные типы данных.
+* Классы эквивалентности:
+* Класс 1: Объект заполнен числами
 *
+* Если в объекте 
 *
-*
-*
+* Если в объекте есть другие объекты (одинаковые по содержанию)
+* Если в объекте есть другие объекты (разные по содержанию)
+* Если в объекте есть другие объекты (пустые)
 */
 
-const exampObject1 = {val1: 1, val2: 2, val3: 3};
-//const exampObject1 = {val1: 1};
-const innerObject1 = exampObject1;
-const innerObject2 = exampObject1;
-const exampObject2 = {val4: 4, val5: 5, val6: 6};
-//const exampObject2 = {val1: 1};
-const innerObject3 = exampObject2;
 
-
-test('Массивы first и second - одинаковой длины', () => {
-		//const obj = { a: 1, b: 1, c: 3};
-		const obj = { exampObject1, exampObject2/*, innerObject3*/ };
-
-		const res = { '[object Object]': [exampObject1, exampObject2] };
+describe('Ситуации, когда функция groupBy() получает объект содержащий числовые данные:', () => {
+	test('Набор отрицательных чисел:', () => {
+		const obj = { a: -65, b: -999, c: -10, d: -65 };
+		const res = { '-65': [-65, -65], '-999': [-999], '-10': [-10] };
 		expect(groupBy(x => x, obj)).toStrictEqual(res);
 	});
+	test('Набор положительных чисел:', () => {
+		const obj = { a: 300, b: 8, c: 20, d: 555, e: 8, f:8, g: 555 };
+		const res = { '300': [300], '8': [8, 8, 8], '20': [20], '555': [555, 555] };
+		expect(groupBy(x => x, obj)).toStrictEqual(res);
+	});
+	test('Объетк с набором положительных и отрицательных чисел:', () => {
+		const obj = { a: 300, b: -8, c: -20, d: 555, e: 8, f:-8, g: 555 };
+		const res = { '300': [300], '-8': [-8, -8], '-20': [-20], '555': [555, 555], '8': [8] };
+		expect(groupBy(x => x, obj)).toStrictEqual(res);
+	});
+});
+
+describe('Ситуации, когда функция groupBy() получает объект содержащий строковые данные:', () => {
+	test('Объект строк, символы алфавита и спецсимволы:', () => {
+		const obj = { a: 'a', b: 'b', c: 'c', d: 'a', e: 'b', f: 'c'};
+		const res = { 'a': ['a', 'a'], 'b': ['b', 'b'], 'c': ['c', 'c'] };
+		expect(groupBy(x => x, obj)).toStrictEqual(res);
+	});
+	test('Объект строк, но с числами:', () => {
+		const obj = { a: '1', b: '2', c: '3', d: '1', e: '2', f: '3'};
+		const res = { '1': ['1', '1'], '2': ['2', '2'], '3': ['3', '3'] };
+		expect(groupBy(x => x, obj)).toStrictEqual(res);
+	});
+	test('Объект со строковыми типами данных, но в премешку с числовыми:', () => {
+		const obj = { a: '1', b: '2', c: '3', d: 1, e: 2, f: 3};
+		const res = { '1': ['1', '1'], '2': ['2', '2'], '3': ['3', '3'] };
+		expect(groupBy(x => x, obj)).toStrictEqual(res);
+	});
+});
+
+// describe('Ситуации, когда функция groupBy() получает объект содержащий другие объекты:', () => {
+// 	test('Если в объекте есть другие объекты (одинаковые по содержанию)', () => {
+// 		const obj = { a: { val1: 1, val2:2 }, b: { val1:1, val2: 2 }, c: { val1:1, val2:2 } };
+// 		const res = { '{ val1: 1, val2:2 }': [{ val1: 1, val2:2 }, { val1: 1, val2:2 }, { val1: 1, val2:2 }] };
+// 		expect(groupBy(x => x, obj)).toStrictEqual(res);
+// 	});
+// 	test('Если в объекте есть другие объекты (разные по содержанию)', () => {
+// 		const obj = { a: { val1: 1 }, b: { val2: 2 }, c: { val3: 3 } };
+// 		const res = { '{ val1: 1 }': [{ val1: 1 }], '{ val2: 2 }': [{ val2: 2 }], '{ val3: 3 }': [{ val3: 3 }] };
+// 		expect(groupBy(x => x, obj)).toStrictEqual(res);
+// 	});
+// 	test('Если в объекте есть другие объекты (пустые)', () => {
+// 		const obj = { a: {}, b: {}, c: {} };
+// 		const res = { '{}': [{}, {}, {}] };
+// 		expect(groupBy(x => x, obj)).toStrictEqual(res);
+// 	});
+// });
