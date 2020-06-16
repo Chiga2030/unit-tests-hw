@@ -29,6 +29,3 @@ const groupBy = (fn, obj) => {
 };
 
 module.exports = groupBy;
-
-        const obj = { a: '1', b: '2', c: '3', d: 1, e: 2, f: 3};
-console.log(groupBy(x => x, obj))
