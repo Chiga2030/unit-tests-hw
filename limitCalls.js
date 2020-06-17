@@ -34,3 +34,15 @@ function limitCalls(fn, maxCalls) {
 }
 
 module.exports = limitCalls;
+
+
+const limitedLog = limitCalls(() => console.log('log'), 2);
+
+//let test = limitedLog();
+ // test = limitedLog();
+ // test = limitedLog();
+ // test = limitedLog();
+// limitedLog();
+// limitedLog();
+
+console.log(limitedLog());
