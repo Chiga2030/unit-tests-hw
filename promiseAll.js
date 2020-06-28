@@ -23,4 +23,4 @@ const promiseAll = promises => new Promise((resolve, reject) => {
     }, { result: [], count: promises.length });
 });
 
-module.exports = { promiseAll };
+module.exports = promiseAll;
