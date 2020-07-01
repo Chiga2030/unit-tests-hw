@@ -1,0 +1,22 @@
+{
+  "name": "unit-tests-hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "capitalize.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebHeroSchool/unit-tests-hw.git"
+  },
+  "author": "ТВОЕ ИМЯ <ТВОЯ ПОЧТА>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebHeroSchool/unit-tests-hw/issues"
+  },
+  "homepage": "https://github.com/WebHeroSchool/unit-tests-hw#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
