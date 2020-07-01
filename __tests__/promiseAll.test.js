@@ -5,6 +5,7 @@ const promiseAll = require('../promiseAll');
 * Класс 1: Метод выполнит промис если результатом всех вошедших в него промисов будет resolve().
 * Класс 2: Метод отклонит промис, если любой из вошедших в него промисов вернет reject()
 * Класс 3: Метод Promise.all() получив пустой массив будет выполнен, при чем результатом будет так же пустой массив
+* Класс 4: Свойство Promise.all() - если какой-либо элемент перечисляемого объекта не является обещанием, то он будет преобразован с помощью метода Promise.resolve. На этот случай добавим отдельную проверку, что бы убедиться (или нет), что функция promiseAll() умеет проебразовывать пришедшие данные в промисы.
 *
 * Так как нам нужно убедиться что поведение функции promiseAll(promises) аналогично поведению метода Promise.all(promises), то будем их тестировать парами на одинаковых сценария.
 */
@@ -52,6 +53,41 @@ describe('Класс 3 - массив исходных промисов буде
 	test('Ожидаем от promiseAll() аналогичного результата - пустой массив', () => {
 	  return promiseAll(promises).then(data => {
 	    expect(data).toEqual([]);
+	  });
+	});
+});
+
+describe('Класс 4 - Проверка на преобразование в промис данных, таковыми не являющихся:', () => {
+	test('Проверяем Promise.all() передав в массив исходных промисов подготовленные данные, которые являются промисами - ожидаем массив значений от всех промисов, которые были ему переданы', () => {
+		const p1 = Promise.resolve('this prmise');
+		const p2 = Promise.resolve('and this prmise');
+		const promises = [p1, p2];
+	  return Promise.all(promises).then(data => {
+	    expect(data).toEqual(['this prmise', 'and this prmise']);
+	  });
+	});
+	test('Проверяем promiseAll() аналогичного. Ожидаем в ответ - массив значений от всех промисов, которые были ему переданы', () => {
+		const p1 = Promise.resolve('this prmise');
+		const p2 = Promise.resolve('and this prmise');
+		const promises = [p1, p2];
+	  return promiseAll(promises).then(data => {
+	    expect(data).toEqual(['this prmise', 'and this prmise']);
+	  });
+	});
+	test('Проверяем Promise.all() передав в массив исходных промисов примитивные значения, которые преобразуются в промисы силами движка JS - ожидаем массив значений от всех промисов, которые были ему переданы', () => {
+		const p1 = 'this not a promise';
+		const p2 = 1789;
+		const promises = [p1, p2];
+	  return Promise.all(promises).then(data => {
+	    expect(data).toEqual(['this not a promise', 1789]);
+	  });
+	});
+	test('Проверяем promiseAll() аналогичными данными. Ожидаем, что функция преобразует двнные в промисы и вернет ответ - массив значений от всех промисов, которые были ему переданы', () => {
+		const p1 = 'this not a promise';
+		const p2 = 1789;
+		const promises = [p1, p2];
+	  return promiseAll(promises).then(data => {
+	    expect(data).toEqual(['this not a promise', 1789]);
 	  });
 	});
 });
