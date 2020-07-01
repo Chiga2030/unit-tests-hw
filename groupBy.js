@@ -28,4 +28,4 @@ const groupBy = (fn, obj) => {
     return result;
 };
 
-module.exports = { groupBy };
+module.exports = groupBy;

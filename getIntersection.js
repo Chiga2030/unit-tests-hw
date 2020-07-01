@@ -39,4 +39,4 @@ function getIntersection(first, second) {
     return arr.sort(sortRules);
 }
 
-module.exports = { getIntersection };
+module.exports = getIntersection;
