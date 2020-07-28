@@ -1,0 +1,23 @@
+{
+  "name": "unit-tests-hw",
+  "version": "1.0.0",
+  "description": "Домашние работы для модуля Unit-тестирование",
+  "main": "commission.js",
+  "dependencies": {
+    "jest": "^26.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chiga2030/unit-tests-hw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chiga2030/unit-tests-hw/issues"
+  },
+  "homepage": "https://github.com/Chiga2030/unit-tests-hw#readme"
+}
